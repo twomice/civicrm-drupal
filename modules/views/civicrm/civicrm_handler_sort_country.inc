@@ -24,40 +24,16 @@
 */
 
 /**
- * Field handler to provide relationship to CiviCRM email.
+ * sort handler to properly pass the field type for date fields.
  *
- * @ingroup civicrm_relationship_handlers
  */
-class civicrm_handler_relationship_mail extends civicrm_handler_relationship_location {
+class civicrm_handler_sort_country extends civicrm_handler_sort_address_pseudoconstant {
   
   function ensure_my_table() {
-    if (!isset($this->table_alias)) {
-      if (!method_exists($this->query, 'ensure_table')) {
-        vpr_trace();
-        exit;
-      }
-      $extra = $this->location_extras();
-      if (isset($extra) && !empty($extra)) {
-        $join        = $this->get_join();
-        $join->extra = $extra;
-        // Decide between And/Or
-        $join->extra_type = self::$_locationOps[$this->options['location_op']];
-        $this->table_alias = $this->query->add_table($this->table, $this->relationship, $join);
-      }
-      else {
-        $this->table_alias = $this->query->ensure_table($this->table, $this->relationship);
-      }
-    }
-    return $this->table_alias;
-  }
+    $this->_join_table = 'civicrm_country';
+    $this->_join_left_field = 'country_id';
+    $this->_join_field = 'id';
 
-  /**
-   * Called to implement a relationship in a query.
-   */
-  function query() {
-    // Just ensure the one table. This is briefer than parent::query(), which
-    // attempts to create an additional join.
-    $this->ensure_my_table();
+    return parent::ensure_my_table();
   }
 }
-
