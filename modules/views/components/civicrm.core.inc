@@ -1179,6 +1179,7 @@ function _civicrm_core_data(&$data, $enabled) {
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
+      'handler' => 'civicrm_handler_sort_mail',
     ),
   );
 
@@ -1246,6 +1247,15 @@ function _civicrm_core_data(&$data, $enabled) {
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
+    ),
+    'relationship' => array(
+      'base' => 'civicrm_contact',
+      'field' => 'id',
+      'relationship table' => 'civicrm_email',
+      'relationship field' => 'contact_id',
+      'other_field' => 'FIXME',
+      'handler' => 'civicrm_handler_relationship_mail',
+      'label' => t('CiviCRM Email'),
     ),
   );
 
