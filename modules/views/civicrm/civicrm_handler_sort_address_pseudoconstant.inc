@@ -35,28 +35,11 @@ class civicrm_handler_sort_address_pseudoconstant extends views_handler_sort {
    */
   private   $_join_alias;
 
-  /**
-   * The additional table to be joined.
-   *
-   * @var _join_table
-   */
-  protected $_join_table;
-  
-  /**
-   * The field in the additional table to use in joining to civirm_address.
-   *
-   * @var _join_field
-   */
-  protected $_join_field;
-
-  /**
-   * The field in civicrm_address to use in joining the additional table.
-   *
-   * @var _join_left_field
-   */
-  protected $_join_left_field;
-
   function ensure_my_table() {
+    $join_table = $this->definition['join_table'];
+    $join_field = $this->definition['join_field'];
+    $join_left_field = $this->definition['join_left_field'];
+    
     $alias = parent::ensure_my_table();
 
     // Use the relationship if one is specified; otherwise, use the base table_alias.
@@ -70,10 +53,10 @@ class civicrm_handler_sort_address_pseudoconstant extends views_handler_sort {
 
     // Create a new join object and provide it with information about the join
     $join = new views_join();
-    $join->construct($this->_join_table, $table_alias, $this->_join_left_field, $this->_join_field, NULL, 'LEFT');
+    $join->construct($join_table, $table_alias, $join_left_field, $join_field, NULL, 'LEFT');
 
     // Define an alias and use add_reliationship to add the join to the query.
-    $this->_join_alias = $this->_join_table . '_' . $this->table;
+    $this->_join_alias = $join_table . '_' . $this->table;
     $join_table_alias = $this->query->add_relationship($this->_join_alias, $join, $table_alias, $this->relationship);
 
     return $table_alias;

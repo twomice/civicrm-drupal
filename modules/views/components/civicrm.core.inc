@@ -939,7 +939,10 @@ function _civicrm_core_data(&$data, $enabled) {
       'pseudo method' => 'stateProvince',
     ),
     'sort' => array(
-      'handler' => 'civicrm_handler_sort_state',
+      'join_table' => 'civicrm_state_province',
+      'join_left_field' => 'state_province_id',
+      'join_field' => 'id',
+      'handler' => 'civicrm_handler_sort_address_pseudoconstant',
     ),
   );
 
@@ -1027,7 +1030,10 @@ function _civicrm_core_data(&$data, $enabled) {
       'pseudo method' => 'country',
     ),
     'sort' => array(
-      'handler' => 'civicrm_handler_sort_country',
+      'join_table' => 'civicrm_country',
+      'join_left_field' => 'country_id',
+      'join_field' => 'id',
+      'handler' => 'civicrm_handler_sort_address_pseudoconstant',
     ),
   );
 
@@ -1052,7 +1058,10 @@ function _civicrm_core_data(&$data, $enabled) {
       'pseudo method' => 'county',
     ),
     'sort' => array(
-      'handler' => 'civicrm_handler_sort_county',
+      'join_table' => 'civicrm_county',
+      'join_left_field' => 'county_id',
+      'join_field' => 'id',
+      'handler' => 'civicrm_handler_sort_address_pseudoconstant',
     ),
   );
 

@@ -77,9 +77,6 @@ files[] = modules/views/civicrm/civicrm_handler_field_activity.inc
 files[] = modules/views/civicrm/civicrm_handler_sort_date.inc
 files[] = modules/views/civicrm/civicrm_handler_sort_pcp_raised_amount.inc
 files[] = modules/views/civicrm/civicrm_handler_sort_address_pseudoconstant.inc
-files[] = modules/views/civicrm/civicrm_handler_sort_country.inc
-files[] = modules/views/civicrm/civicrm_handler_sort_county.inc
-files[] = modules/views/civicrm/civicrm_handler_sort_state.inc
 
 ; argument handlers
 files[] = modules/views/civicrm/civicrm_plugin_argument_default.inc
