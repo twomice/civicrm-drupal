@@ -51,6 +51,11 @@ class civicrm_handler_sort_address_pseudoconstant extends views_handler_sort {
       $table_alias = $this->table_alias;
     }
 
+    // If the table_alias is still unknown, use the base table
+    if (!$table_alias) {
+      $table_alias = $this->table;
+    }
+
     // Create a new join object and provide it with information about the join
     $join = new views_join();
     $join->construct($join_table, $table_alias, $join_left_field, $join_field, NULL, 'LEFT');
